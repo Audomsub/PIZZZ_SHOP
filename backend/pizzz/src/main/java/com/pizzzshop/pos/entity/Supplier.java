@@ -1,0 +1,29 @@
+package com.pizzzshop.pos.entity;
+
+import jakarta.persistence.*;
+import lombok.*;
+
+@Entity
+@Table(name = "suppliers")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class Supplier {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false, length = 100)
+    private String name;
+
+    @Column(name = "contact_name", length = 100)
+    private String contactName;
+
+    @Column(length = 20)
+    private String phone;
+
+    @Column(length = 100)
+    private String email;
+}

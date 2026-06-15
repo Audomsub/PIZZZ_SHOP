@@ -1,0 +1,48 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/PIZZZ_SHOP
+    username: postgres
+    password: 1234
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME:pizzzshop@gmail.com}
+    password: ${MAIL_PASSWORD:}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:4B6150645367566B5970337336763979244226452948404D6251655468576D5A71}
+    expiration-ms: 86400000
+  cors:
+    allowed-origins: http://localhost:5173,http://localhost:3000
+  vat:
+    rate: 0.07
+    inclusive: true
+  loyalty:
+    points-per-baht: 0.1
+    baht-per-point: 0.1
+  half-and-half:
+    pricing-rule: MAX
+
+logging:
+  level:
+    com.pizzzshop: DEBUG
+    org.springframework.security: WARN
