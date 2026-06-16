@@ -106,6 +106,13 @@
 			<version>2.6.0</version>
 		</dependency>
 
+		<!-- Jackson support for Hibernate lazy proxies -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-hibernate6</artifactId>
+			<version>2.18.2</version>
+		</dependency>
+
 		<!-- Test -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

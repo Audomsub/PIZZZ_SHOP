@@ -28,7 +28,7 @@ public class CashShiftServiceImpl {
     private final UserRepository userRepository;
 
     public CashShiftResponse getCurrentShift(Long branchId) {
-        return cashShiftRepository.findByBranchIdAndStatus(branchId, ShiftStatus.OPEN)
+        return cashShiftRepository.findFirstByBranchIdAndStatusOrderByOpenedAtDesc(branchId, ShiftStatus.OPEN)
             .map(this::toResponse)
             .orElse(null);
     }
@@ -40,7 +40,7 @@ public class CashShiftServiceImpl {
 
     @Transactional
     public CashShiftResponse openShift(Long branchId, BigDecimal startAmount) {
-        if (cashShiftRepository.findByBranchIdAndStatus(branchId, ShiftStatus.OPEN).isPresent()) {
+        if (cashShiftRepository.findFirstByBranchIdAndStatusOrderByOpenedAtDesc(branchId, ShiftStatus.OPEN).isPresent()) {
             throw new RuntimeException("มีรอบเงินสดที่เปิดอยู่แล้วสำหรับสาขานี้");
         }
 

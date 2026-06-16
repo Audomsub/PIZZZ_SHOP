@@ -7,6 +7,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CashShiftRepository extends JpaRepository<CashShift, Long> {
-    Optional<CashShift> findByBranchIdAndStatus(Long branchId, ShiftStatus status);
+    Optional<CashShift> findFirstByBranchIdAndStatusOrderByOpenedAtDesc(Long branchId, ShiftStatus status);
     List<CashShift> findByBranchIdOrderByOpenedAtDesc(Long branchId);
 }
